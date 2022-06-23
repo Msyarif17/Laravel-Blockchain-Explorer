@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Session;
 class WalletController extends Controller
 {
 
-    public function send(){
-        return view('wallet.send');
-    }
     public function backup(){
         $pk = Auth::user()->private_key;
         return view('wallet.backup',compact('pk'));
     }
     public function calculateBalance($address){
-        return Transaksi::where('sender',$address)->andWhere('isInput', 1)->sum('amount') - Transaksi::where('sender',$address)->andWhere('isInput', 0)->sum('amount');
+        if(Transaksi::where('sender',$address)->count() > 0){
+            if(Transaksi::where('sender',$address)->where('isInput', 1)->count()>0){
+                return Transaksi::where('sender',$address)->where('isInput', 1)->sum('amount') - Transaksi::where('sender',$address)->where('isInput', 0)->sum('amount');
+            }
+            return Auth::user()->balance - Transaksi::where('sender',$address)->where('isInput', 0)->sum('amount');
+        }
+        return 0;
     }
 }

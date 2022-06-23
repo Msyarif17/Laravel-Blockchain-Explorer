@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wallet', function (Blueprint $table) {
-            $table->id();
-            $table->string('address');
-            $table->string('private_key');
-            $table->string('public_key');
-            $table->unsignedDecimal('balance')->nullable()->default(0);
-            $table->string('password');
-            $table->timestamps();
+        Schema::table('wallet', function (Blueprint $table) {
+            $table->rememberToken();
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet');
+        Schema::table('wallet', function (Blueprint $table) {
+            //
+        });
     }
 };

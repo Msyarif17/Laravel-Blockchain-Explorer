@@ -26,8 +26,11 @@ class HomeController extends Controller
     {
         $w = new WalletController;
         $address = "0x".Auth::user()->address;
-        $balance = $w->calculateBalance(Auth::user()->address);
+        $balance = Auth::user()->balance;
         return view('home',compact('address','balance'));
+    }
+    public function send(){
+        return view('wallet.send');
     }
     
 }

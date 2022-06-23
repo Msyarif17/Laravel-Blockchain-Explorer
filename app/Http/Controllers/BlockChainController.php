@@ -18,7 +18,7 @@ class BlockChainController extends Controller
      */
     private function createGenesisBlock()
     {
-        return new BlockController(0, strtotime("2017-01-01"), "Genesis Block");
+        return new BlockController(0, strtotime("now"), "Genesis Block");
     }
 
     /**
@@ -49,7 +49,7 @@ class BlockChainController extends Controller
             $block->hash = $block->calculateHash();
         }
 
-        echo "Block mined: ".$block->hash."\n";
+        // echo "Block mined: ".$block->hash."\n";
     }
 
     /**

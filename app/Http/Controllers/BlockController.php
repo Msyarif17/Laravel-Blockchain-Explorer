@@ -20,6 +20,6 @@ class BlockController extends Controller
 
     public function calculateHash()
     {
-        return hash("sha256", $this->index.$this->previousHash.$this->timestamp.((string)$this->data).$this->nonce);
+        return hash("sha256", $this->index.$this->previousHash.$this->timestamp.str($this->data).$this->nonce);
     }
 }

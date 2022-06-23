@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('amount');
             $table->string('data');
             $table->boolean('isInput');
-            $table->string('txHash');
+            $table->boolean('isConfirmed')->default(0);
+            $table->longText('txHash');
             $table->timestamps();
         });
     }

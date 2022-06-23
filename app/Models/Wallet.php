@@ -29,8 +29,7 @@ class Wallet extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'private_key',
-        'remember_token',
+        'password',
     ];
 
     /**
